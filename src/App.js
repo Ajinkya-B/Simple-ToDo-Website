@@ -1,23 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from './components/Header'
+import Tasks from './components/Tasks'
+import { useState } from 'react'
+import { AiFillAlert } from "react-icons/ai";
 
-function App() {
+const App = () => {
+  const [tasks, setTasks] = useState([
+        {
+            id: 1,
+            text: 'Default 1',
+            reminder: true,
+            day: '29th November at 2:30pm'
+        },
+        {
+            id: 2,
+            text: 'Default 2',
+            reminder: false,
+            day: '23rd September at 1:30pm'
+        },
+        {
+            id: 3,
+            text: 'Default 3',
+            reminder: true,
+            day: '1st January at 12:01am'
+        },
+    ])
+  
+  //delete task
+  const deleteTask = (id) => {
+    setTasks(tasks.filter((task) => task.id !== id))
+  }
+  
+  // toggle reminder
+  const toggleReminder = (id) => {
+    setTasks(tasks.map((task) => task.id === id ? {...task, reminder:!task.reminder}: task))
+    console.log(tasks)
+  }
+  
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container'>
+      <Header />
+      {tasks.length > 0 ?
+      <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder}/>:
+      <p><AiFillAlert style={{color:'red'}}/> There are no tasks left to display!</p> 
+      }
     </div>
   );
 }
