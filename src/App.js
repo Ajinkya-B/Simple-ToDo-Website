@@ -48,12 +48,11 @@ const App = () => {
   // Toggle Add Taks Form
   const toggleForm = () => {
     setShowAddTask(!showAddTask)
-  }
-  
+  }  
   
   return (
     <div className='container'>
-      <Header onAdd={toggleForm}/>
+      <Header onAdd={toggleForm} showAdd={showAddTask}/>
       {showAddTask && <AddTask onAdd={addTask}/>}
       {tasks.length > 0 ?
       <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder}/>:

@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
-import { AiFillPlusCircle } from 'react-icons/ai';
+import { AiFillPlusCircle, AiFillMinusCircle } from 'react-icons/ai';
 
-export const Button = ({ text, color,onClick }) => {
+export const Button = ({ text, color, onClick, showAdd }) => {
   return (
     <div>
         <button onClick={onClick} style={{backgroundColor: color}} className="btn">
           <div style={{display: "flex", alignItems: "center"}}>
-            <AiFillPlusCircle style={{marginRight:'5px', padding:'0', fontSize: '16px'}}/>
+            {showAdd ? <AiFillMinusCircle style={{marginRight:'5px', padding:'0', fontSize: '16px'}}/> :
+            <AiFillPlusCircle style={{marginRight:'5px', padding:'0', fontSize: '16px'}}/>}
             {text}
           </div>
         </button>
