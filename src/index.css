@@ -81,6 +81,7 @@ body {
 
 .form-control label {
   display: block;
+  margin-left: 5px;
 }
 
 .form-control input {
